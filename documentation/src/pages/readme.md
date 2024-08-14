@@ -29,7 +29,7 @@ VCkit aims to provide the tools to equip your existing business systems to issue
 ## Documentation
 
 * [How to use agent config file](/docs/category/agent-configuration)
-* [Component Documentation](/category/vckit-plugins)
+* [Component Documentation](/docs/category/vckit-plugins)
 * [Produce Guides for Plugin Creation/Management](#)
 
 
