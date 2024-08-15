@@ -1,18 +1,27 @@
 version: '3.8'
 
 services:
-  demo-explorer:
-    build:
-      context: .
-      dockerfile: packages/demo-explorer/Dockerfile
-    ports:
-      - 3000:80
-    restart: unless-stopped
-    env_file: ./packages/demo-explorer/.env
+  # demo-explorer:
+  #   build:
+  #     context: .
+  #     dockerfile: packages/demo-explorer/Dockerfile
+  #   ports:
+  #     - 3333:80
+  #   restart: unless-stopped
+  #   env_file: ./packages/demo-explorer/.env
+
+  # vckit-api:
+  #   build:
+  #     context: .
+  #   env_file:
+  #     - local.env
+  #   ports:
+  #     - 3332:3332
+  #   depends_on:
+  #     - db
 
   vckit-api:
-    build:
-      context: .
+    image: ghcr.io/uncefact/project-vckit:sha-60d583b@sha256:afa777d13512628e4277566a8abf45be43bdd19cdc8cbcc5383ffc00cc0ba912
     env_file:
       - local.env
     ports:
@@ -31,6 +40,26 @@ services:
     volumes:
       - vckit-data:/var/lib/postgresql/data
     restart: always
+
+  storage-service:
+    image: ghcr.io/uncefact/project-identity-resolver:sha-8aed15c@sha256:d768fbb395e39072a4d227ebea651346e5f27a74f0b4938e6676042095599f3b
+    ports:
+      - 3334:3334
+    environment:
+      - API_VERSION=v1
+      - PROTOCOL=http
+      - DOMAIN=localhost
+      - PORT=3334
+      - AVAILABLE_BUCKETS=verifiable-credentials,private-verifiable-credentials,epcis-events
+      - STORAGE_TYPE=local    
+
+  # vckit-documentation:
+  #   build:
+  #     context: .
+  #     dockerfile: documentation/Dockerfile
+  #   ports:
+  #     - 3331:80
+
 
 volumes:
   vckit-data:
