@@ -1,14 +1,14 @@
 version: '3.8'
 
 services:
-  # demo-explorer:
-  #   build:
-  #     context: .
-  #     dockerfile: packages/demo-explorer/Dockerfile
-  #   ports:
-  #     - 3333:80
-  #   restart: unless-stopped
-  #   env_file: ./packages/demo-explorer/.env
+  demo-explorer:
+    build:
+      context: .
+      dockerfile: packages/demo-explorer/Dockerfile
+    ports:
+      - 3333:80
+    restart: unless-stopped
+    env_file: ./packages/demo-explorer/.env
 
   # vckit-api:
   #   build:
