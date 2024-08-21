@@ -53,12 +53,12 @@ services:
       - AVAILABLE_BUCKETS=verifiable-credentials,private-verifiable-credentials,epcis-events
       - STORAGE_TYPE=local    
 
-  # vckit-documentation:
-  #   build:
-  #     context: .
-  #     dockerfile: documentation/Dockerfile
-  #   ports:
-  #     - 3331:80
+  vckit-documentation:
+    build:
+      context: .
+      dockerfile: documentation/Dockerfile
+    ports:
+      - 3331:80
 
 
 volumes:
